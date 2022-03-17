@@ -36,6 +36,7 @@ export enum Genders {
 }
 
 export enum S3Folders {
+  App = 'app',
   Users = 'users',
   Products = 'products',
 }
