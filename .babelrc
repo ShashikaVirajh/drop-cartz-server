@@ -1,0 +1,21 @@
+{
+  "presets": ["@babel/preset-typescript", "@babel/preset-env"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "config": "./config",
+          "constants": "./constants",
+          "data": "./_data",
+          "enums": "./enums",
+          "features": "./features",
+          "library": "./library",
+          "middleware": "./middleware",
+          "utils": "./utils"
+        }
+      }
+    ]
+  ]
+}

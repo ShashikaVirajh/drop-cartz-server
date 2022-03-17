@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["@types", "./node_modules/@types"],
+    "outDir": "build",
+    "target": "es2015",
+    "module": "commonjs",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "paths": {
+      "constants/*": ["constants/*"],
+      "data/*": ["_data/*"],
+      "database/*": ["database/*"],
+      "enums/*": ["enums/*"],
+      "features/*": ["features/*"],
+      "library/*": ["library/*"]
+    }
+  }
+}

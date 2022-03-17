@@ -1,0 +1,36 @@
+name: Drop Cartz CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    env:
+      CI: true
+      MONGO_URL: mongodb://localhost/dropcartz
+
+    strategy:
+      matrix:
+        node-version: [14]
+        mongodb-version: ['5.12']
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Use MongoDB from GitHub Actions
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+      - run: yarn install
+
+      # - run: yarn test
