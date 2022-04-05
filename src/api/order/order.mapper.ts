@@ -28,6 +28,18 @@ class OrderMapper {
     this.paidAt = data.paidAt;
     this.deliveredAt = data.deliveredAt;
   }
+
+  setShippingAddress(shippingAddress: any) {
+    this.shippingAddress = shippingAddress;
+  }
+
+  setPaymentInfo(paymentInfo: any) {
+    this.paymentInfo = paymentInfo;
+  }
+
+  setOrderItems(orderItems: any) {
+    this.orderItems = orderItems;
+  }
 }
 
 export default OrderMapper;

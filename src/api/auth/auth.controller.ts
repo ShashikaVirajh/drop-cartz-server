@@ -34,9 +34,11 @@ class AuthController {
     const mappedUser = new UserMapper(user);
 
     const response: TResponse = {
+      data: {
+        currentUser: mappedUser,
+        token,
+      },
       success: true,
-      token,
-      data: mappedUser,
     };
 
     res.status(201).json(response);
@@ -50,9 +52,11 @@ class AuthController {
     const mappedUser = new UserMapper(user);
 
     const response: TResponse = {
+      data: {
+        currentUser: mappedUser,
+        token,
+      },
       success: true,
-      token,
-      data: mappedUser,
     };
 
     res.status(201).json(response);

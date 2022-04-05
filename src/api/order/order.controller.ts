@@ -7,6 +7,9 @@ import { orderService } from './order.service';
 import { TResponse } from 'types';
 
 import asyncHandler from 'middleware/async-handler.middleware';
+import ShipmentMapper from './shipment.mapper';
+import PaymentMapper from './payment.mapper';
+import OrderItemMapper from './orderItem.mapper';
 
 class OrderController {
   createOrder = asyncHandler(async (req: Request, res: Response) => {
@@ -37,6 +40,14 @@ class OrderController {
 
     const order = await orderService.createOrder(payload);
     const mappedOrder = new OrderMapper(order);
+
+    const mappedShippingAddress = new ShipmentMapper(order.shippingAddress);
+    const mappedPaymentInfo = new PaymentMapper(order.paymentInfo);
+    const mappedOrderItems = order.orderItems.map(orderItem => new OrderItemMapper(orderItem));
+
+    mappedOrder.setShippingAddress(mappedShippingAddress);
+    mappedOrder.setPaymentInfo(mappedPaymentInfo);
+    mappedOrder.setOrderItems(mappedOrderItems);
 
     const response: TResponse = {
       success: true,
@@ -71,9 +82,16 @@ class OrderController {
 
   getOrderById = asyncHandler(async (req, res) => {
     const { id } = req?.params;
-    const Order = await orderService.getOrderById(id);
+    const order = await orderService.getOrderById(id);
 
-    const mappedOrder = new OrderMapper(Order);
+    const mappedOrder = new OrderMapper(order);
+    const mappedShippingAddress = new ShipmentMapper(order.shippingAddress);
+    const mappedPaymentInfo = new PaymentMapper(order.paymentInfo);
+    const mappedOrderItems = order.orderItems.map(orderItem => new OrderItemMapper(orderItem));
+
+    mappedOrder.setShippingAddress(mappedShippingAddress);
+    mappedOrder.setPaymentInfo(mappedPaymentInfo);
+    mappedOrder.setOrderItems(mappedOrderItems);
 
     const response: TResponse = {
       success: true,
@@ -90,6 +108,14 @@ class OrderController {
     const order = await orderService.getAuthUserOrderById(orderId, userId);
     const mappedOrder = new OrderMapper(order);
 
+    const mappedShippingAddress = new ShipmentMapper(order.shippingAddress);
+    const mappedPaymentInfo = new PaymentMapper(order.paymentInfo);
+    const mappedOrderItems = order.orderItems.map(orderItem => new OrderItemMapper(orderItem));
+
+    mappedOrder.setShippingAddress(mappedShippingAddress);
+    mappedOrder.setPaymentInfo(mappedPaymentInfo);
+    mappedOrder.setOrderItems(mappedOrderItems);
+
     const response: TResponse = {
       success: true,
       data: mappedOrder,
@@ -104,6 +130,14 @@ class OrderController {
 
     const order = await orderService.updateOrderStatus(id, orderStatus);
     const mappedOrder = new OrderMapper(order);
+
+    const mappedShippingAddress = new ShipmentMapper(order.shippingAddress);
+    const mappedPaymentInfo = new PaymentMapper(order.paymentInfo);
+    const mappedOrderItems = order.orderItems.map(orderItem => new OrderItemMapper(orderItem));
+
+    mappedOrder.setShippingAddress(mappedShippingAddress);
+    mappedOrder.setPaymentInfo(mappedPaymentInfo);
+    mappedOrder.setOrderItems(mappedOrderItems);
 
     const response: TResponse = {
       success: true,

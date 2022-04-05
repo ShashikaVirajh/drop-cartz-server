@@ -7,7 +7,7 @@ class UserMapper {
   private gender;
   private email;
   private mobile;
-  private password;
+  // private password;
   private photo;
   private role;
   private status;
@@ -19,7 +19,7 @@ class UserMapper {
     this.gender = data?.gender;
     this.email = data?.email;
     this.mobile = data?.mobile;
-    this.password = data?.password;
+    // this.password = data?.password;
     this.photo = data?.photo?.url;
     this.role = data?.role;
     this.status = data?.status;
